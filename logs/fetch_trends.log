@@ -1,0 +1,85 @@
+2025-05-14 14:33:17 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Canadian immigration' 的实时趋势分数
+2025-05-14 14:33:17 - fetch_trends - INFO - 使用代理服务
+2025-05-14 14:33:17 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:33:17 - fetch_trends - ERROR - 浏览器自动化初始化失败: BrowserType.launch() got an unexpected keyword argument 'user_data_dir'
+2025-05-14 14:33:17 - fetch_trends - INFO - 所有提取方法失败，使用估算值: 59
+2025-05-14 14:33:19 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Express Entry Canada' 的实时趋势分数
+2025-05-14 14:33:19 - fetch_trends - INFO - 使用代理服务
+2025-05-14 14:33:19 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:33:19 - fetch_trends - ERROR - 浏览器自动化初始化失败: BrowserType.launch() got an unexpected keyword argument 'user_data_dir'
+2025-05-14 14:33:19 - fetch_trends - INFO - 所有提取方法失败，使用估算值: 55
+2025-05-14 14:33:21 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Canada PNP' 的实时趋势分数
+2025-05-14 14:33:21 - fetch_trends - INFO - 使用代理服务
+2025-05-14 14:33:21 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:33:21 - fetch_trends - ERROR - 浏览器自动化初始化失败: BrowserType.launch() got an unexpected keyword argument 'user_data_dir'
+2025-05-14 14:33:21 - fetch_trends - INFO - 所有提取方法失败，使用估算值: 53
+2025-05-14 14:33:23 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Study permit Canada' 的实时趋势分数
+2025-05-14 14:33:23 - fetch_trends - INFO - 使用代理服务
+2025-05-14 14:33:23 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:33:24 - fetch_trends - ERROR - 浏览器自动化初始化失败: BrowserType.launch() got an unexpected keyword argument 'user_data_dir'
+2025-05-14 14:33:24 - fetch_trends - INFO - 所有提取方法失败，使用估算值: 63
+2025-05-14 14:35:16 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Canadian immigration' 的实时趋势分数
+2025-05-14 14:35:16 - fetch_trends - INFO - 使用代理服务
+2025-05-14 14:35:16 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:35:47 - fetch_trends - ERROR - 浏览器导航或数据提取过程中出错: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.google.com/", waiting until "networkidle"
+
+2025-05-14 14:35:47 - fetch_trends - INFO - 发生错误，使用默认分数: 50
+2025-05-14 14:35:49 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Express Entry Canada' 的实时趋势分数
+2025-05-14 14:35:49 - fetch_trends - INFO - 使用代理服务
+2025-05-14 14:35:49 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:36:19 - fetch_trends - ERROR - 浏览器导航或数据提取过程中出错: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.google.com/", waiting until "networkidle"
+
+2025-05-14 14:36:20 - fetch_trends - INFO - 发生错误，使用默认分数: 50
+2025-05-14 14:36:22 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Canada PNP' 的实时趋势分数
+2025-05-14 14:36:22 - fetch_trends - INFO - 使用代理服务
+2025-05-14 14:36:22 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:36:53 - fetch_trends - ERROR - 浏览器导航或数据提取过程中出错: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.google.com/", waiting until "networkidle"
+
+2025-05-14 14:36:53 - fetch_trends - INFO - 发生错误，使用默认分数: 50
+2025-05-14 14:36:55 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Study permit Canada' 的实时趋势分数
+2025-05-14 14:36:55 - fetch_trends - INFO - 使用代理服务
+2025-05-14 14:36:55 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:37:26 - fetch_trends - ERROR - 浏览器导航或数据提取过程中出错: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://www.google.com/", waiting until "networkidle"
+
+2025-05-14 14:37:26 - fetch_trends - INFO - 发生错误，使用默认分数: 50
+2025-05-14 14:46:17 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Canadian immigration' 的实时趋势分数
+2025-05-14 14:46:17 - fetch_trends - INFO - 使用代理服务
+2025-05-14 14:46:17 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:46:18 - fetch_trends - INFO - 直接访问Google Trends页面: https://trends.google.com/trends/explore?date=now%207-d&geo=CA&q=Canadian%20immigration
+2025-05-14 14:46:21 - fetch_trends - INFO - 等待页面加载 8.8 秒
+2025-05-14 14:46:35 - fetch_trends - INFO - 已保存趋势截图: data/trend_screenshots/trend_Canadian_immigration_1747259195.png
+2025-05-14 14:46:35 - fetch_trends - WARNING - 检测到错误页面: https://trends.google.com/trends/explore?date=now%207-d&geo=CA&q=Canadian%20immigration
+2025-05-14 14:46:35 - fetch_trends - INFO - 将当前代理加入黑名单
+2025-05-14 14:46:35 - fetch_trends - INFO - 检测到错误页面，使用默认分数: 50
+2025-05-14 14:46:37 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Express Entry Canada' 的实时趋势分数
+2025-05-14 14:46:37 - fetch_trends - INFO - 不使用代理
+2025-05-14 14:46:37 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:46:38 - fetch_trends - INFO - 直接访问Google Trends页面: https://trends.google.com/trends/explore?date=now%207-d&geo=CA&q=Express%20Entry%20Canada
+2025-05-14 14:46:39 - fetch_trends - INFO - 等待页面加载 5.3 秒
+2025-05-14 14:46:50 - fetch_trends - INFO - 已保存趋势截图: data/trend_screenshots/trend_Express_Entry_Canada_1747259210.png
+2025-05-14 14:46:50 - fetch_trends - WARNING - 检测到错误页面: https://trends.google.com/trends/explore?date=now%207-d&geo=CA&q=Express%20Entry%20Canada
+2025-05-14 14:46:51 - fetch_trends - INFO - 检测到错误页面，使用默认分数: 50
+2025-05-14 14:46:53 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Canada PNP' 的实时趋势分数
+2025-05-14 14:46:53 - fetch_trends - INFO - 不使用代理
+2025-05-14 14:46:53 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:46:54 - fetch_trends - INFO - 直接访问Google Trends页面: https://trends.google.com/trends/explore?date=now%207-d&geo=CA&q=Canada%20PNP
+2025-05-14 14:46:54 - fetch_trends - INFO - 等待页面加载 8.9 秒
+2025-05-14 14:47:11 - fetch_trends - INFO - 已保存趋势截图: data/trend_screenshots/trend_Canada_PNP_1747259230.png
+2025-05-14 14:47:11 - fetch_trends - WARNING - 检测到错误页面: https://trends.google.com/trends/explore?date=now%207-d&geo=CA&q=Canada%20PNP
+2025-05-14 14:47:11 - fetch_trends - INFO - 检测到错误页面，使用默认分数: 50
+2025-05-14 14:47:13 - fetch_trends - INFO - 使用浏览器方法获取关键词 'Study permit Canada' 的实时趋势分数
+2025-05-14 14:47:13 - fetch_trends - INFO - 不使用代理
+2025-05-14 14:47:13 - fetch_trends - INFO - 使用持久化会话目录: /var/folders/gc/_74zcyx91cb06l83_7y0dsz40000gn/T/google_trends_browser_data
+2025-05-14 14:47:13 - fetch_trends - INFO - 直接访问Google Trends页面: https://trends.google.com/trends/explore?date=now%207-d&geo=CA&q=Study%20permit%20Canada
+2025-05-14 14:47:14 - fetch_trends - INFO - 等待页面加载 8.9 秒
+2025-05-14 14:47:28 - fetch_trends - INFO - 已保存趋势截图: data/trend_screenshots/trend_Study_permit_Canada_1747259248.png
+2025-05-14 14:47:28 - fetch_trends - WARNING - 检测到错误页面: https://trends.google.com/trends/explore?date=now%207-d&geo=CA&q=Study%20permit%20Canada
+2025-05-14 14:47:28 - fetch_trends - INFO - 检测到错误页面，使用默认分数: 50
