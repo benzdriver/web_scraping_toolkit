@@ -1,110 +1,152 @@
 """
-Logging utilities for the Web Scraping Toolkit.
+日志系统模块
 
-This module provides a consistent logging interface for all components
-of the Web Scraping Toolkit.
+提供了统一的日志配置和获取功能。
 """
 
 import os
 import logging
-import datetime
-from typing import Optional
+from datetime import datetime
 
-def configure_logger(name: str, log_level: str = "INFO") -> logging.Logger:
+# 导入配置管理
+from .config import get_logger_config
+
+# 定义日志级别映射
+LOG_LEVELS = {
+    "debug": logging.DEBUG,
+    "info": logging.INFO,
+    "warning": logging.WARNING,
+    "error": logging.ERROR,
+    "critical": logging.CRITICAL
+}
+
+# 默认日志目录
+DEFAULT_LOG_DIR = "logs"
+# 统一日志文件名
+UNIFIED_LOG_FILE = "web_scraping_toolkit.log"
+
+# 统一文件处理程序字典，用于共享
+_file_handlers = {}
+
+def setup_logger(
+    name: str = None,
+    log_dir: str = None,
+    console_level: str = None,
+    file_level: str = None,
+    capture_warnings: bool = None,
+    include_timestamp: bool = True,
+    unified_log: bool = True
+):
     """
-    Configure and return a logger with the specified name and log level.
+    设置并配置一个日志记录器
     
     Args:
-        name: The name of the logger.
-        log_level: The log level (DEBUG, INFO, WARNING, ERROR, CRITICAL).
+        name: 日志记录器名称，如果为None则使用根日志记录器
+        log_dir: 日志文件存储目录
+        console_level: 控制台日志级别
+        file_level: 文件日志级别
+        capture_warnings: 是否捕获Python警告并将其转换为日志
+        include_timestamp: 是否在日志文件名中包含时间戳（仅当unified_log=False时有效）
+        unified_log: 是否将所有日志统一输出到一个文件
         
     Returns:
-        logging.Logger: Configured logger instance.
+        logger: 配置好的日志记录器
     """
-    # Map string log levels to their corresponding constants
-    log_level_map = {
-        "DEBUG": logging.DEBUG,
-        "INFO": logging.INFO,
-        "WARNING": logging.WARNING,
-        "ERROR": logging.ERROR,
-        "CRITICAL": logging.CRITICAL
-    }
+    # 获取日志配置
+    config = get_logger_config()
     
-    # Get the numeric log level (default to INFO if not recognized)
-    level = log_level_map.get(log_level.upper(), logging.INFO)
+    # 使用传入的参数或配置值
+    log_dir = log_dir or config.get("directory", DEFAULT_LOG_DIR)
+    console_level = console_level or config.get("level", "info")
+    file_level = file_level or config.get("level", "debug")
     
-    # Create and configure logger
+    if capture_warnings is None:
+        capture_warnings = config.get("capture_warnings", True)
+    
+    # 从环境变量读取统一日志设置
+    if unified_log is None:
+        unified_log = config.get("unified_log", True)
+    
+    # 创建日志目录
+    os.makedirs(log_dir, exist_ok=True)
+    
+    # 获取日志记录器
     logger = logging.getLogger(name)
-    logger.setLevel(level)
+    logger.setLevel(logging.DEBUG)  # 设置最低级别，处理程序可以过滤
     
-    # Clear existing handlers to avoid duplicate logging
-    if logger.handlers:
-        logger.handlers = []
-        
-    # Create console handler
+    # 清除现有处理程序（避免重复）
+    if logger.hasHandlers():
+        logger.handlers.clear()
+    
+    # 配置控制台处理程序
     console_handler = logging.StreamHandler()
-    console_handler.setLevel(level)
-    
-    # Create formatter
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
-    )
-    
-    # Set formatter on console handler
-    console_handler.setFormatter(formatter)
-    
-    # Add console handler to logger
+    console_handler.setLevel(LOG_LEVELS.get(console_level.lower(), logging.INFO))
+    console_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    console_handler.setFormatter(console_formatter)
     logger.addHandler(console_handler)
     
-    # Configure file handler if LOG_TO_FILE is enabled
-    if os.getenv("LOG_TO_FILE", "").lower() == "true":
-        _add_file_handler(logger, name, level, formatter)
+    # 配置文件处理程序
+    if unified_log:
+        # 使用统一日志文件
+        global _file_handlers
+        
+        # 检查是否已经有统一的文件处理程序
+        handler_key = f"{log_dir}:{file_level}"
+        
+        if handler_key not in _file_handlers:
+            # 创建新的统一文件处理程序
+            log_file = os.path.join(log_dir, UNIFIED_LOG_FILE)
+            file_handler = logging.FileHandler(log_file, encoding='utf-8')
+            file_handler.setLevel(LOG_LEVELS.get(file_level.lower(), logging.DEBUG))
+            
+            # 详细的格式化程序，包含模块位置信息
+            file_formatter = logging.Formatter(
+                '%(asctime)s - %(name)s - %(levelname)s - %(pathname)s:%(lineno)d - %(message)s'
+            )
+            file_handler.setFormatter(file_formatter)
+            
+            # 缓存处理程序以供重用
+            _file_handlers[handler_key] = file_handler
+        
+        # 添加统一文件处理程序
+        logger.addHandler(_file_handlers[handler_key])
+    else:
+        # 使用模块特定的日志文件
+        if include_timestamp:
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            log_name = f"{name if name else 'root'}_{timestamp}.log"
+        else:
+            log_name = f"{name if name else 'root'}.log"
+        
+        log_file = os.path.join(log_dir, log_name)
+        file_handler = logging.FileHandler(log_file, encoding='utf-8')
+        file_handler.setLevel(LOG_LEVELS.get(file_level.lower(), logging.DEBUG))
+        file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(pathname)s:%(lineno)d - %(message)s')
+        file_handler.setFormatter(file_formatter)
+        logger.addHandler(file_handler)
+    
+    # 设置是否捕获警告
+    if capture_warnings:
+        logging.captureWarnings(True)
     
     return logger
 
-def _add_file_handler(
-    logger: logging.Logger,
-    name: str,
-    level: int,
-    formatter: logging.Formatter
-) -> None:
+def get_logger(name: str, **kwargs):
     """
-    Add a file handler to the logger.
+    获取一个命名的日志记录器
+    
+    如果日志记录器已存在且有处理程序，则直接返回；
+    否则使用setup_logger创建一个新的。
     
     Args:
-        logger: The logger to add the file handler to.
-        name: The name of the logger (used for the log file name).
-        level: The log level.
-        formatter: The formatter to use for the file handler.
-    """
-    # Create logs directory if it doesn't exist
-    log_dir = os.getenv("LOG_DIRECTORY", "logs")
-    os.makedirs(log_dir, exist_ok=True)
-    
-    # Create log file name with current date
-    date_str = datetime.datetime.now().strftime("%Y-%m-%d")
-    log_file = os.path.join(log_dir, f"{name}_{date_str}.log")
-    
-    # Create file handler
-    file_handler = logging.FileHandler(log_file)
-    file_handler.setLevel(level)
-    file_handler.setFormatter(formatter)
-    
-    # Add file handler to logger
-    logger.addHandler(file_handler)
-
-def get_logger(name: str) -> logging.Logger:
-    """
-    Get or create a logger with the specified name.
-    
-    Args:
-        name: The name of the logger.
+        name: 日志记录器名称
+        **kwargs: 传递给setup_logger的关键字参数
         
     Returns:
-        logging.Logger: Configured logger instance.
+        logger: 配置好的日志记录器
     """
-    # Get log level from environment variable or use default
-    log_level = os.getenv("LOG_LEVEL", "INFO")
+    logger = logging.getLogger(name)
+    if logger.hasHandlers():
+        return logger
     
-    return configure_logger(name, log_level) 
+    return setup_logger(name, **kwargs) 

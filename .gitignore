@@ -1,0 +1,67 @@
+# Python相关
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 虚拟环境
+venv/
+ENV/
+env/
+.env
+
+# 测试相关
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+test_results/
+
+# IDE相关
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# 项目特定目录
+cache/
+logs/
+data/
+test_results/
+
+# 数据和凭证文件
+*.json
+*.csv
+*.xlsx
+*.db
+*.sqlite3
+credentials.txt
+secrets.yaml
+
+# 仅作为例外保留特定文件
+!requirements.txt
+!pyproject.toml
+!examples/*.json
+
+# Playwright浏览器缓存
+.playwright-browsers/ 

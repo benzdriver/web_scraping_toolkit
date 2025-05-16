@@ -7,13 +7,15 @@
 """
 
 import time
-import logging
 import requests
 from typing import Optional, List
 from bs4 import BeautifulSoup
 
+# 导入集中式日志系统
+from ..utils.logger import get_logger
+
 # 配置日志
-logger = logging.getLogger("web_scraping_toolkit.content")
+logger = get_logger("web_scraping_toolkit.content")
 
 def fetch_article_content(
     url: str, 

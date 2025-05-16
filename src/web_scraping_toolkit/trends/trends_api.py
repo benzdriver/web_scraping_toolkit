@@ -11,13 +11,15 @@ import os
 import json
 import time
 import random
-import logging
 import requests
 from typing import Dict, List, Union, Optional
 from pytrends.request import TrendReq
 
+# 导入集中式日志系统
+from ..utils.logger import get_logger
+
 # 配置日志
-logger = logging.getLogger("web_scraping_toolkit.trends")
+logger = get_logger("web_scraping_toolkit.trends")
 
 # 默认配置
 DEFAULT_GEO = "CA"  # 默认地区：加拿大

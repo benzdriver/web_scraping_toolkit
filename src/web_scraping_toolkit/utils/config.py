@@ -113,4 +113,39 @@ def get_cache_config() -> Dict[str, Any]:
     Returns:
         Dict[str, Any]: Cache configuration dictionary.
     """
-    return load_config()["cache"] 
+    return load_config()["cache"]
+
+# 日志配置
+def get_logger_config() -> Dict[str, Any]:
+    """
+    获取日志系统的配置
+    
+    从环境变量中读取日志系统的配置参数，包括：
+    - LOG_LEVEL: 日志级别 (debug, info, warning, error, critical)
+    - LOG_DIR: 日志文件存储目录
+    - LOG_CAPTURE_WARNINGS: 是否捕获Python警告
+    - LOG_UNIFIED: 是否将所有日志统一输出到一个文件
+    
+    Returns:
+        Dict[str, Any]: 日志配置字典
+    """
+    return {
+        "level": os.getenv("LOG_LEVEL", "info").lower(),
+        "directory": os.getenv("LOG_DIR", "logs"),
+        "capture_warnings": os.getenv("LOG_CAPTURE_WARNINGS", "true").lower() == "true",
+        "unified_log": os.getenv("LOG_UNIFIED", "true").lower() == "true",
+    }
+
+# Google Trends 配置
+def get_trends_config() -> Dict[str, Any]:
+    """
+    获取Google Trends相关配置
+    
+    Returns:
+        Dict[str, Any]: Google Trends配置字典
+    """
+    return {
+        "serpapi_key": os.getenv("SERPAPI_KEY"),
+        "default_geo": os.getenv("TRENDS_DEFAULT_GEO", "CA"),
+        "default_timeframe": os.getenv("TRENDS_DEFAULT_TIMEFRAME", "now 7-d"),
+    } 
