@@ -42,11 +42,12 @@ Web Scraping Toolkit 提供了以下主要功能：
 
 ### 内容抓取 (content 模块)
 
-提供了抓取和管理新闻文章内容的工具：
+提供了抓取和管理网页内容的工具：
 
-- **内容抓取**: 使用 Playwright 抓取动态渲染的网页内容
+- **智能内容抓取**: 使用 browser-use 自动识别和提取网页主体内容，有效应对反爬虫
+- **动态内容渲染**: 使用 Playwright 抓取动态渲染的网页内容
 - **内容解析**: 使用 BeautifulSoup 解析静态网页内容
-- **新闻缓存**: 缓存新闻文章，避免重复处理
+- **新闻缓存**: 缓存网页内容，避免重复处理
 - **状态管理**: 跟踪处理状态，记录已处理和未处理的内容
 
 ## 安装
@@ -193,10 +194,17 @@ weighted_keywords = fetch_weighted_trending_keywords(
 ```python
 from web_scraping_toolkit import fetch_article_content
 
-# 抓取文章内容
+# 智能内容抓取（使用 browser-use）
 url = "https://example.com/article"
 content = fetch_article_content(url)
 print(content[:200] + "...")  # 预览前200个字符
+
+# 禁用 browser-use，仅使用 Playwright 和 BeautifulSoup
+content = fetch_article_content(url, use_browser_use=False)
+
+# 指定自定义 CSS 选择器
+selectors = ['div.article-content', '.main-article', '#content']
+content = fetch_article_content(url, selectors=selectors)
 ```
 
 ### 新闻缓存
@@ -240,6 +248,9 @@ SMARTPROXY_PROTOCOL=http  # 协议类型: http或socks5
 SMARTPROXY_ADDITIONAL_PORTS=7001,7002,7003  # 额外端口列表
 TWOCAPTCHA_API_KEY=your_key
 SERPAPI_KEY=your_serpapi_key  # 用于Google Trends数据获取
+
+# browser-use 配置
+BROWSER_USE_LOGGING_LEVEL=info  # browser-use 日志级别
 
 # 日志配置
 LOG_LEVEL=INFO  # 日志级别: DEBUG, INFO, WARNING, ERROR, CRITICAL
